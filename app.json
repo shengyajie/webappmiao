@@ -1,0 +1,30 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/sta/sta"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "喵喵账单",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/tarbar/ind0.png",
+        "selectedIconPath": "images/tarbar/ind1.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/sta/sta",
+        "iconPath": "images/tarbar/sta0.png",
+        "selectedIconPath": "images/tarbar/sta1.png",
+        "text": "统计"
+      }
+    ]
+  }
+}

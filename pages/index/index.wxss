@@ -1,0 +1,70 @@
+/* pages/index/index.wxss */
+page{
+  height: 100%;
+  width: 100%;
+  background-color:#F5F5F5;
+}
+.page_hd{
+height: 300rpx;
+width: 100%;
+position: relative;
+}
+.background{
+  height: 300rpx;
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  background-size:100% 100%;
+}
+.weui-flex{
+  position: absolute;
+  width: 100%;
+  left: 0px;
+  top:0px;
+  flex-direction: row;
+}
+.weui-flex__item{
+ display:block; 
+ position: relative;
+  left: 40rpx;
+  top:100rpx;
+  color: #FFFFFF;
+}
+
+/* body */
+.page_bd{
+  width: 100%;
+ display: flex;
+ justify-content: center;
+}
+.page_bdc{
+ 
+ margin-top: -25rpx;
+ width: 90%;
+ display: flex;
+ flex-direction: column;
+}
+.c-bar{
+  height: 10px;
+  background-color:#436EEE;
+  border-radius: 4px;
+  box-shadow: 3px 3px 15px 10px rgba(0,0,0,0.1);
+}
+.c-detail{
+  background-color:#FFFFFF;
+  margin: 0 8rpx 0 8rpx;
+}
+.tarbar{
+  color: red;
+}
+.weui-cellft{
+ display: flex;
+ flex-direction: row-reverse;
+ position: relative;
+}
+.weui-cell__ft{
+  margin-left: 10rpx;
+}
+.navigator hover-class:last-child{
+  border: none;
+}
