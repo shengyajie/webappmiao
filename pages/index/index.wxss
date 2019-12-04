@@ -1,70 +1,103 @@
 /* pages/index/index.wxss */
-page{
+
+page {
   height: 100%;
   width: 100%;
-  background-color:#F5F5F5;
+  background-color: #f5f5f5;
 }
-.page_hd{
-height: 300rpx;
-width: 100%;
-position: relative;
+
+.page_hd {
+  height: 300rpx;
+  width: 100%;
+  position: relative;
 }
-.background{
+
+.background {
   height: 300rpx;
   width: 100%;
   z-index: -1;
   position: absolute;
-  background-size:100% 100%;
+  background-size: 100% 100%;
 }
-.weui-flex{
+
+.weui-flex {
   position: absolute;
   width: 100%;
   left: 0px;
-  top:0px;
+  top: 0px;
   flex-direction: row;
 }
-.weui-flex__item{
- display:block; 
- position: relative;
+
+.weui-flex__item {
+  display: block;
+  position: relative;
   left: 40rpx;
-  top:100rpx;
-  color: #FFFFFF;
+  top: 100rpx;
+  color: #fff;
 }
 
 /* body */
-.page_bd{
+
+.page_bd {
   width: 100%;
- display: flex;
- justify-content: center;
+  display: flex;
+  justify-content: center;
 }
-.page_bdc{
- 
- margin-top: -25rpx;
- width: 90%;
- display: flex;
- flex-direction: column;
+
+.page_bdc {
+  margin-top: -25rpx;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
 }
-.c-bar{
+
+.c-bar {
   height: 10px;
-  background-color:#436EEE;
+  background-color: #436eee;
   border-radius: 4px;
-  box-shadow: 3px 3px 15px 10px rgba(0,0,0,0.1);
+  box-shadow: 3px 3px 15px 10px rgba(0, 0, 0, 0.1);
 }
-.c-detail{
-  background-color:#FFFFFF;
+
+.c-detail {
+  background-color: #fff;
   margin: 0 8rpx 0 8rpx;
 }
-.tarbar{
+
+.tarbar {
   color: red;
 }
-.weui-cellft{
- display: flex;
- flex-direction: row-reverse;
- position: relative;
+
+.weui-cellft {
+  display: flex;
+  flex-direction: row-reverse;
+  position: relative;
 }
-.weui-cell__ft{
+
+.weui-cell__ft {
   margin-left: 10rpx;
 }
-.navigator hover-class:last-child{
+
+.navigator hover-class:last-child {
   border: none;
 }
+
+.scroll {
+  bottom: 0;
+  overflow: auto;
+  /* height: 600rpx; *//* 用wx.getSystemInfoSync()获取不到设备的高度* */
+}
+
+.add_icon {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  margin-left: -25px;
+  margin-top: -8px;
+}
+
+/* .buttonMove {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  position: fixed;
+} */
