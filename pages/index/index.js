@@ -1,4 +1,5 @@
 // pages/sta/sta.js
+var items = require("../../data/miaodetail.js")
 var startPoint;
 var app=getApp();
 Page({
@@ -8,7 +9,6 @@ Page({
     buttonLeft: 0,
     windowHeight: '',
     windowWidth: '',
-    items: [],
     startX: 0, //开始坐标
     startY: 0
   },
@@ -36,25 +36,25 @@ Page({
         })
       }
     })
-    this.data.items.push({
-      content: " ",
-      isTouchMove: false //默认全隐藏删除
-    })
+    // this.data.miaode.push({
+    //     content:  " ",
+    //     isTouchMove: false //默认全隐藏删除
+    //   })
     this.setData({
-      items: this.data.items
+      miaode: items.postList
     })
   },
   //手指触摸动作开始 记录起点X坐标
   touchstart: function (e) {
     //开始触摸时 重置所有删除
-    this.data.items.forEach(function (v, i) {
+    this.data.miaode.forEach(function (v, i) {
       if (v.isTouchMove)//只操作为true的
         v.isTouchMove = false;
     })
     this.setData({
       startX: e.changedTouches[0].clientX,
       startY: e.changedTouches[0].clientY,
-      items: this.data.items
+      miaode: items.postList
     })
   },
   //滑动事件处理
@@ -67,7 +67,7 @@ Page({
       touchMoveY = e.changedTouches[0].clientY,//滑动变化坐标
       //获取滑动角度
       angle = that.angle({ X: startX, Y: startY }, { X: touchMoveX, Y: touchMoveY });
-    that.data.items.forEach(function (v, i) {
+    that.data.miaode.forEach(function (v, i) {
       v.isTouchMove = false
       //滑动超过30度角 return
       if (Math.abs(angle) > 30) return;
@@ -80,7 +80,7 @@ Page({
     })
     //更新数据
     that.setData({
-      items: that.data.items
+      miaode: items.postList
     })
   },
   /**
@@ -96,11 +96,13 @@ Page({
   },
   //删除事件
   del: function (e) {
-    this.data.items.splice(e.currentTarget.dataset.index, 1)
+    this.data.miaode.splice(e.currentTarget.dataset.index, 1)
     this.setData({
-      items: this.data.items
+      miaode: items.postList
     })
   },
+
+//按钮移动
   buttonStart: function(e) {
     startPoint = e.touches[0]
   },
@@ -133,21 +135,10 @@ Page({
   buttonEnd: function(e) {
 
   },
-  
-
-  clickdel: function (event) {
+// 点击按钮
+  clickadd:function(event){
     wx.navigateTo({
       url: 'pages/det/det',
-      
     })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-  },
-  onShow: function() {
-
-  }
 })
