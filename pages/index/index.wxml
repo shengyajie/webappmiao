@@ -19,7 +19,7 @@
   <view class="page_bd">
     <view class="page_bdc">
       <view class="c-bar"></view>
-      <scroll-view class="scroll" scroll-y style="height:100%">
+      <scroll-view class="scroll" scroll-y style="height:{{windowHeight}}px">
         <view class="c-detail">
           <view class="weui-panel">
             <view class="weui-panel__hd">
@@ -29,7 +29,7 @@
                 <view class="weui-cell__ft">支出：-100</view>
               </view>
             </view>
-            <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{miaode}}" wx:for-item="item" data-s="{{item.postid}}" wx:key=""  >
+            <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{miaode}}" wx:for-item="item" wx:key="">
               <view class="content">
                 <navigator url="#" class="weui-cell weui-cell_example weui-cell_access">
                   <view class="weui-cell__hd">
@@ -71,9 +71,12 @@
     </view>
   </view>
   <!-- 悬浮按钮 -->
-  <view bind:tap="clickadd">
+  <!-- <view bind:tap="clickadd">
     <button catchtouchmove="buttonMove" catchtouchstart="buttonStart" catchtouchend="buttonEnd" style="top:{{buttonTop}}px;left:{{buttonLeft}}px;width: 50px;height:50px;border-radius:50px;position:fixed;">
       <image class="add_icon" src="../../images/indimgs/add.png"></image>
     </button>
-  </view>
+  </view> -->
+  <view bindtap="adddetail">
+<image class="add-icon" src="../../images/indimgs/add.png"></image>
+</view>
 </view>

@@ -103,14 +103,6 @@ page {
   /* height: 600rpx; *//* 用wx.getSystemInfoSync()获取不到设备的高度* */
 }
 
-.add_icon {
-  position: fixed;
-  width: 50px;
-  height: 50px;
-  margin-left: -25px;
-  margin-top: -8px;
-}
-
 .touch-item {
   font-size: 14px;
   display: flex;
@@ -128,7 +120,7 @@ page {
 
 .content {
   width: 100%;
-  margin-right:0;
+  margin-right: 0;
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
   -webkit-transform: translateX(90px);
@@ -153,4 +145,13 @@ page {
 .touch-move-active .content, .touch-move-active .del {
   -webkit-transform: translateX(0);
   transform: translateX(0);
+}
+
+/* 添加按钮 */
+.add-icon{
+position: fixed;
+width: 42px;
+height: 42px;
+bottom:30px;
+right:20px;
 }

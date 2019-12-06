@@ -1,9 +1,8 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/det/det",
+    "pages/index/index",
     "pages/sta/sta"
-   
   ],
   "window": {
     "backgroundTextStyle": "light",
