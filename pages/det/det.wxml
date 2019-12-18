@@ -25,20 +25,22 @@
           支出
         </view>
         <view hidden="{{activeIndex!= 1}}">
-          <view class="weui-cell">
-            <view class="weui-cell__hd"  >
-             <image src="{{item.hoverUrl}}" data-index='{{index}}'></image>
-              <view class="weui-label">chuxing</view>
+          <view class="ini" wx:for='{{imgList}}' wx:if="{{imgHoverIndex == index}}">
+
+            <image class="inim" src='{{item.hoverUrl}}'></image>
+
+            <view class="init">
+              <text>{{item.title}}</text>
             </view>
             <view class="weui-cell__bd">
-              <input class="weui-input" placeholder="请输入金额" />
+              <input class="weui-input" id="{{item.index}}" data-index="{{index}}" bindinput="bindkeyInput" confirm-type="text" bindconfirm="gotoindex" placeholder="请输入金额" />
             </view>
           </view>
 
-          <view class="simg" >
+          <view class="simg">
             <view class='test' wx:for='{{imgList}}' wx:key='img' bindtap='chooseThis' data-index='{{index}}'>
-              <image src='{{imgHoverIndex == index ?item.hoverUrl:item.url}}'></image> 
-                  <text class="box-text" style="color:{{imgHoverIndex == index ?item.hocolor:item.tecolor}}">{{item.title}}</text> 
+              <image src='{{imgHoverIndex == index ?item.hoverUrl:item.url}}'></image>
+              <text class="box-text" style="color:{{imgHoverIndex == index ?item.hocolor:item.tecolor}}">{{item.title}}</text>
             </view>
           </view>
         </view>

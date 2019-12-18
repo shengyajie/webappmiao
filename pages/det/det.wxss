@@ -6,43 +6,60 @@ page, .page, .page__bd {
   padding-bottom: 0;
 }
 
-.weui-tab__content {
-  padding-top: 60px;
-  text-align: center;
-}
-.weui-cell__hd{
+.ini {
   display: flex;
   flex-direction: row;
-  width: 100rpx;
-  margin-right: 10rpx;
+  align-items: center;
+  height: 130rpx;
 }
+
+.inim {
+  width: 80rpx;
+  height: 80rpx;
+  margin-left: 10rpx;
+}
+
+.init {
+  text-align: center;
+  padding-right: 20rpx;
+  width: 130rpx;
+}
+
+.weui-input {
+  text-align: right;
+  padding-right: 20rpx;
+}
+
+/* 选择 */
+
 .simg {
   display: flex;
-  height: 100px;
-  flex-direction: row;
+  height: 400rpx;
+  /* width: 750rpx; */
+  /* flex-direction: row; */
+  justify-content: space-around;
+  flex-wrap: wrap;
   background-color: #f5f5f5;
-  width: 100%;
+  padding-top: 15rpx;
 }
 
-/* 测试、 */
-
 .test {
-  width: 100rpx;
+  width: 96rpx;
   height: 100rpx;
   border-radius: 50%;
-  background-color:#CCCCCC;
+  background-color: #ccc;
   flex-direction: row;
   float: center;
   margin: 10rpx;
-    padding: 4rpx;
+  padding: 4rpx;
+  text-align: center;
 }
 
 .test image {
-  width: 100rpx;
+  width: 96rpx;
   height: 100rpx;
-
 }
-.box-text {
-  font-size: 14px;
-text-align: center;
+
+.bosx-text {
+  font-size: 24rpx;
 }

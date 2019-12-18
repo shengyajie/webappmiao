@@ -1,7 +1,9 @@
 // pages/sta/sta.js
-var items = require("../../data/miaodetail.js")
+// va
+//  items = require("../../data/miaodetail.js")
 var startPoint;
-var app=getApp();
+var app = getApp();
+
 Page({
   data: {
     scrollHeight: "",
@@ -10,7 +12,8 @@ Page({
     windowHeight: '',
     windowWidth: '',
     startX: 0, //开始坐标
-    startY: 0
+    startY: 0,
+    items: []
   },
 
   onLoad: function(options) {
@@ -22,6 +25,8 @@ Page({
         })
       },
     });
+
+
     var that = this;
     wx.getSystemInfo({
       success: function(res) {
@@ -36,19 +41,32 @@ Page({
         })
       }
     })
-    // this.data.miaode.push({
-    //     content:  " ",
-    //     isTouchMove: false //默认全隐藏删除
-    //   })
-    this.setData({
-      miaode: items.postList
-    })
+    if (wx.getStorageSync('items')) {
+      let items = wx.getStorageSync('items')
+      if (options.inputValue) {
+        items.push({
+          inputValue: options.inputValue,
+          hoverurl: options.hoverurl,
+          imgtitle:options.imgtitle
+        })
+      }
+      this.setData({
+        // miaode: items.postList,
+        //获取input的金额
+        items,
+      });
+      wx.setStorageSync('items', items)
+    }
+
+
+
   },
   //手指触摸动作开始 记录起点X坐标
-  touchstart: function (e) {
+  touchstart: function(e) {
     //开始触摸时 重置所有删除
-    this.data.miaode.forEach(function (v, i) {
-      if (v.isTouchMove)//只操作为true的
+
+    this.data.miaode.forEach(function(v, i) {
+      if (v.isTouchMove) //只操作为true的
         v.isTouchMove = false;
     })
     this.setData({
@@ -58,16 +76,22 @@ Page({
     })
   },
   //滑动事件处理
-  touchmove: function (e) {
+  touchmove: function(e) {
     var that = this,
-      index = e.currentTarget.dataset.index,//当前索引
-      startX = that.data.startX,//开始X坐标
-      startY = that.data.startY,//开始Y坐标
-      touchMoveX = e.changedTouches[0].clientX,//滑动变化坐标
-      touchMoveY = e.changedTouches[0].clientY,//滑动变化坐标
+      index = e.currentTarget.dataset.index, //当前索引
+      startX = that.data.startX, //开始X坐标
+      startY = that.data.startY, //开始Y坐标
+      touchMoveX = e.changedTouches[0].clientX, //滑动变化坐标
+      touchMoveY = e.changedTouches[0].clientY, //滑动变化坐标
       //获取滑动角度
-      angle = that.angle({ X: startX, Y: startY }, { X: touchMoveX, Y: touchMoveY });
-    that.data.miaode.forEach(function (v, i) {
+      angle = that.angle({
+        X: startX,
+        Y: startY
+      }, {
+        X: touchMoveX,
+        Y: touchMoveY
+      });
+    that.data.miaode.forEach(function(v, i) {
       v.isTouchMove = false
       //滑动超过30度角 return
       if (Math.abs(angle) > 30) return;
@@ -88,60 +112,27 @@ Page({
    * @param {Object} start 起点坐标
    * @param {Object} end 终点坐标
    */
-  angle: function (start, end) {
+  angle: function(start, end) {
     var _X = end.X - start.X,
       _Y = end.Y - start.Y
     //返回角度 /Math.atan()返回数字的反正切值
     return 360 * Math.atan(_Y / _X) / (2 * Math.PI);
   },
   //删除事件
-  del: function (e) {
+  del: function(e) {
     this.data.miaode.splice(e.currentTarget.dataset.index, 1)
     this.setData({
       miaode: items.postList
     })
   },
 
-//按钮移动
-  // buttonStart: function(e) {
-  //   startPoint = e.touches[0]
-  // },
-  // buttonMove: function(e) {
-  //   var endPoint = e.touches[e.touches.length - 1]
-  //   var translateX = endPoint.clientX - startPoint.clientX
-  //   var translateY = endPoint.clientY - startPoint.clientY
-  //   startPoint = endPoint
-  //   var buttonTop = this.data.buttonTop + translateY
-  //   var buttonLeft = this.data.buttonLeft + translateX
-  //   //判断是移动否超出屏幕
-  //   if (buttonLeft + 50 >= this.data.windowWidth) {
-  //     buttonLeft = this.data.windowWidth - 50;
-  //   }
-  //   if (buttonLeft <= 0) {
-  //     buttonLeft = 0;
-  //   }
-  //   if (buttonTop <= 0) {
-  //     buttonTop = 0
-  //   }
-  //   if (buttonTop + 50 >= this.data.windowHeight) {
-  //     buttonTop = this.data.windowHeight - 50;
-  //   }
-  //   this.setData({
-  //     buttonTop: buttonTop,
-  //     buttonLeft: buttonLeft
-  //   })
-  // },
-
-  // buttonEnd: function(e) {
-
-  // },
-// 点击按钮
-  adddetail: function () {
+  // 点击按钮
+  adddetail: function() {
     wx.navigateTo({
       url: '../det/det',
-      success: function (res) { },
-      fail: function (res) { },
-      complete: function (res) { },
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
     })
   }
 })
