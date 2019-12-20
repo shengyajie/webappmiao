@@ -1,6 +1,6 @@
 // pages/sta/sta.js
-// va
 //  items = require("../../data/miaodetail.js")
+var util = require('../../utils/util.js');
 var startPoint;
 var app = getApp();
 
@@ -13,7 +13,12 @@ Page({
     windowWidth: '',
     startX: 0, //开始坐标
     startY: 0,
-    items: []
+    items: [],
+    total: [],
+    incomevalue: 0,
+    spentvalue: 0,
+    mont: '',
+    date: ''
   },
 
   onLoad: function(options) {
@@ -25,9 +30,11 @@ Page({
         })
       },
     });
-
-
-    var that = this;
+    this.setData({
+      date: util.formatTime(new Date()),
+      mont: util.formatTime1(new Date())
+    });
+  var that = this;
     wx.getSystemInfo({
       success: function(res) {
         console.log(res);
@@ -47,32 +54,54 @@ Page({
         items.push({
           inputValue: options.inputValue,
           hoverurl: options.hoverurl,
-          imgtitle:options.imgtitle
+          imgtitle: options.imgtitle
         })
-      }
+      };
       this.setData({
         // miaode: items.postList,
         //获取input的金额
-        items,
-      });
-      wx.setStorageSync('items', items)
-    }
+        items: items,
+      })
+      wx.setStorageSync('items', items);
+      //   // 计算当月收s入支出金额
+      let {
+        incomevalue,
+        spentvalue
+      } = this.data
 
+      for (let index = 0; index < this.data.items.length; index++) {
 
+        if (parseInt(this.data.items[index].inputValue) >= 0) {
+
+          incomevalue = parseInt(this.data.items[index].inputValue) + incomevalue;
+
+        } else {
+          console.log(this.data.items[index].inputValue)
+          spentvalue = parseInt(this.data.items[index].inputValue) + spentvalue;
+
+        }
+      }
+      this.setData({
+        incomevalue,
+        spentvalue,
+      })
+    };
 
   },
+
+  //左滑删除
   //手指触摸动作开始 记录起点X坐标
   touchstart: function(e) {
     //开始触摸时 重置所有删除
 
-    this.data.miaode.forEach(function(v, i) {
+    this.data.items.forEach(function(v, i) {
       if (v.isTouchMove) //只操作为true的
         v.isTouchMove = false;
     })
     this.setData({
       startX: e.changedTouches[0].clientX,
       startY: e.changedTouches[0].clientY,
-      miaode: items.postList
+      items: this.data.items
     })
   },
   //滑动事件处理
@@ -91,7 +120,7 @@ Page({
         X: touchMoveX,
         Y: touchMoveY
       });
-    that.data.miaode.forEach(function(v, i) {
+    that.data.items.forEach(function(v, i) {
       v.isTouchMove = false
       //滑动超过30度角 return
       if (Math.abs(angle) > 30) return;
@@ -104,7 +133,7 @@ Page({
     })
     //更新数据
     that.setData({
-      miaode: items.postList
+      items: this.data.items
     })
   },
   /**
@@ -120,10 +149,12 @@ Page({
   },
   //删除事件
   del: function(e) {
-    this.data.miaode.splice(e.currentTarget.dataset.index, 1)
+    console.log(e.currentTarget.dataset.index)
+    this.data.items.splice(e.currentTarget.dataset.index, 1)
     this.setData({
-      miaode: items.postList
+      items: this.data.items
     })
+    wx.setStorageSync('items', this.data.items);
   },
 
   // 点击按钮

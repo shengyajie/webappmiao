@@ -2,7 +2,6 @@
   "pages": [
     "pages/index/index",
     "pages/det/det",
-    
     "pages/sta/sta"
   ],
   "window": {
