@@ -8,7 +8,7 @@
       </view>
       <view class="weui-flex__item">
         <view class="tot">余额：</view>
-        <view class="totn">190万</view>
+        <view class="totn">{{balance}}</view>
       </view>
       <view class="weui-flex__item">
         <view class="ini">收入：{{incomevalue}}</view>

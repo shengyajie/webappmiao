@@ -1,5 +1,3 @@
-// pages/sta/sta.js
-//  items = require("../../data/miaodetail.js")
 var util = require('../../utils/util.js');
 var startPoint;
 var app = getApp();
@@ -17,12 +15,15 @@ Page({
     total: [],
     incomevalue: 0,
     spentvalue: 0,
+    balance :0,
     mont: '',
     date: ''
   },
 
   onLoad: function(options) {
+    
     let self = this;
+
     wx.getSystemInfo({
       success: function(res) {
         self.setData({
@@ -34,7 +35,7 @@ Page({
       date: util.formatTime(new Date()),
       mont: util.formatTime1(new Date())
     });
-  var that = this;
+    var that = this;
     wx.getSystemInfo({
       success: function(res) {
         console.log(res);
@@ -58,17 +59,17 @@ Page({
         })
       };
       this.setData({
-        // miaode: items.postList,
         //获取input的金额
         items: items,
       })
       wx.setStorageSync('items', items);
-      //   // 计算当月收s入支出金额
+      // 计算当月收入支出金额
       let {
         incomevalue,
-        spentvalue
-      } = this.data
-
+        spentvalue,
+        balance
+      } = this.data;
+      
       for (let index = 0; index < this.data.items.length; index++) {
 
         if (parseInt(this.data.items[index].inputValue) >= 0) {
@@ -80,13 +81,17 @@ Page({
           spentvalue = parseInt(this.data.items[index].inputValue) + spentvalue;
 
         }
+        balance = incomevalue + spentvalue;
       }
       this.setData({
         incomevalue,
         spentvalue,
+        balance,
+       
       })
+     
     };
-
+    
   },
 
   //左滑删除
